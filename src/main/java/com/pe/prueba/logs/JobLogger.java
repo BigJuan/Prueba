@@ -1,7 +1,9 @@
 package com.pe.prueba.logs;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -85,19 +87,21 @@ public class JobLogger {
 		ConsoleHandler ch = new ConsoleHandler();
 		
 		if (error && logError) {
-			l = l + "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText;
+			l = l + "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText + "\n";
 		}
 
 		if (warning && logWarning) {
-			l = l + "warning " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText;
+			l = l + "warning " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText+ "\n";
 		}
 
 		if (message && logMessage) {
-			l = l + "message " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText;
+			l = l + "message " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText+ "\n";
 		}
 		
-	 
-		
+		BufferedWriter output = new BufferedWriter(new FileWriter(logFile));
+        output.write(l);
+        output.close();
+        
 		if(logToFile) {
 			logger.addHandler(fh);
 			logger.log(Level.INFO, messageText);

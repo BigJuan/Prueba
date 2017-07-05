@@ -4,7 +4,6 @@ package com.pe.prueba.logs;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -27,8 +26,7 @@ public class JobLogger {
 	private static boolean logWarning;
 	private static boolean logError;
 	private static boolean logToDatabase;
-	private boolean initialized;
-	private static Map dbParams;
+	private static Map<String, String> dbParams;
 	private static Logger logger;
 
 	public JobLogger(boolean logToFileParam, boolean logToConsoleParam, boolean logToDatabaseParam,

@@ -116,7 +116,11 @@ public class JobLogger {
 		}
 		
 		if(logToDatabase) {
-			stmt.executeUpdate("insert into Log_Values('" + message + "', " + String.valueOf(t) + ")");
+			
+			stmt.executeUpdate("INSERT INTO gestor.Log_Values (`message`,`message_level`)VALUES	('" + messageText + "','" + String.valueOf(t) + "')");
+			
+			
+			 
 		}
 	}
 

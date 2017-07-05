@@ -12,7 +12,7 @@ public class Home {
 	public static void main(String[] args) throws Exception {
 		boolean logToFileParam = true;
 		boolean logToConsoleParam = true;
-		boolean logToDatabaseParam = false;
+		boolean logToDatabaseParam = true;
 		boolean logMessageParam = true;
 		boolean logWarningParam = true;
 		boolean logErrorParam = true;

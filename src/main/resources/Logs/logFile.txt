@@ -1,0 +1,3 @@
+[2017/07/04 23:26:18]error    : Mensaje 12
+[2017/07/04 23:26:18]warning  : Mensaje 12
+[2017/07/04 23:26:18]message  : Mensaje 12

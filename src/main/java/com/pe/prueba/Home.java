@@ -1,5 +1,8 @@
 package com.pe.prueba;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +32,13 @@ public class Home {
 		dbParamsMap.put("portNumber", "3306");
 		
 		new JobLogger(logToFileParam, logToConsoleParam, logToDatabaseParam, logMessageParam, logWarningParam, logErrorParam, dbParamsMap);
+
 		
-		String messageText = "Texto Prueba";
+		
+		String messageText = "Mensaje 11";
 		boolean message = true;
 		boolean warning = true;
-		boolean error = false;
+		boolean error = true;
 		
 		//System.out.println("test");
 		//Class.forName("com.mysql.jdbc.Driver");

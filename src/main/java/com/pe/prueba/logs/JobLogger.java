@@ -4,10 +4,12 @@ package com.pe.prueba.logs;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
@@ -77,28 +79,31 @@ public class JobLogger {
 
 		Statement stmt = connection.createStatement();
 
-		String l = null;
+		String l = "";
 		File logFile = new File(dbParams.get("logFileFolder") + "/logFile.txt");
-		if (!logFile.exists()) {
-			logFile.createNewFile();
-		}
+ 
 		
-		FileHandler fh = new FileHandler(dbParams.get("logFileFolder") + "/logFile.txt");
+		FileHandler fh = new FileHandler(dbParams.get("logFileFolder") + "/logHandlerFile.txt");
 		ConsoleHandler ch = new ConsoleHandler();
 		
+		
+		DateFormat df = new SimpleDateFormat("[yyyy/MM/dd HH:mm:ss]");
+		String sdt = df.format(new Date(System.currentTimeMillis()));
+		
 		if (error && logError) {
-			l = l + "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText + "\n";
+			l = l + sdt+ "error   " +" : "+ messageText + "\n";
 		}
 
 		if (warning && logWarning) {
-			l = l + "warning " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText+ "\n";
+			l = l + sdt + "warning " +" : "+ messageText+ "\n";
 		}
 
 		if (message && logMessage) {
-			l = l + "message " +DateFormat.getDateInstance(DateFormat.LONG).format(new Date()) + messageText+ "\n";
+			l = l + sdt + "message " +" : "+ messageText+ "\n";
 		}
 		
-		BufferedWriter output = new BufferedWriter(new FileWriter(logFile));
+ 
+		BufferedWriter output = new BufferedWriter(new FileWriter(logFile,true));
         output.write(l);
         output.close();
         
